@@ -15,7 +15,7 @@ public class ActionController {
             Action action = JsonIterator.deserialize(request, Action.class); 
             return RestResponse.ok(action.doAction());
         } catch (Exception e) {
-            return RestResponse.ok(e.toString());
+            return RestResponse.fail(e.toString());
         }
     }
 }

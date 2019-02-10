@@ -21,7 +21,7 @@ public class Action {
     @JsonProperty(nullable = true)
     public String text = null;
 
-    public String doAction() {
+    public String doAction() throws Exception {
         FileHandler fileHandler = new FileHandler();
         switch (actionID) {
             case COUNTLINES:
@@ -30,22 +30,22 @@ public class Action {
                 if(line > 0) {
                     return fileHandler.getLine(fileName, line);
                 } else {
-                    return "Incorrect line asked in get line action";
+                    throw new Exception("Incorrect line asked in get line action");
                 }
             case ADDLINE:
                 if(text != null) {
                     return fileHandler.addLine(fileName, text);
                 } else {
-                    return "Incorrect text selected";
+                    throw new Exception("Incorrect text selected");
                 }
             case REPLACELINE:
                 if(text != null && line > 0) {
                     return fileHandler.replaceLine(fileName, text, line);
                 } else {
                     if(text != null) {
-                        return "Incorrect text selected";
+                        throw new Exception("Incorrect text selected");
                     } else if(line > 0) {
-                        return "Incorrect line asked in get line action";
+                        throw new Exception("Incorrect line asked in get line action");
                     }
                 }
             case GETTEXT:
@@ -55,16 +55,16 @@ public class Action {
                     return fileHandler.insertLine(fileName, text, line);
                 } else {
                     if(text != null) {
-                        return "Incorrect text selected";
+                        throw new Exception("Incorrect text selected");
                     } else if(line > 0) {
-                        return "Incorrect line asked in get line action";
+                        throw new Exception("Incorrect line asked in get line action");
                     }
                 }
             case DELETELINE:
                 if(line > 0) {
                     return fileHandler.deleteLine(fileName, line);
                 } else {
-                    return "Incorrect line asked in get line action";
+                    throw new Exception("Incorrect line asked in get line action");
                 }
             case CREATEFILE:
                 return fileHandler.createFile(fileName);
@@ -72,10 +72,10 @@ public class Action {
                 if(text != null) {
                     return fileHandler.searchSubStr(fileName, text);
                 } else {
-                    return "Incorrect word to be found";
+                    throw new Exception("Incorrect word to be found");
                 }
             default:
-            return "Incorrect acion selected";
+            throw new Exception("Incorrect acion selected");
         }
     }
 }

@@ -12,7 +12,7 @@ public class FileHandler {
         this.basePath = config.getProperty("basePath");
     }
 
-    public String countLines(String file) {
+    public String countLines(String file) throws Exception {
         Integer lines = 0;
         try {
             BufferedReader br = new BufferedReader(new FileReader(basePath+file));
@@ -22,13 +22,13 @@ public class FileHandler {
             br.close();
             return Integer.toString(lines);
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String getLine(String file, int line) {
+    public String getLine(String file, int line) throws Exception {
         Integer lines = 0;
         String sLine = null;
         try {
@@ -41,15 +41,16 @@ public class FileHandler {
                 }
             }
             br.close();
-            return "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+            String error = "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+            throw new Exception(error);
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String addLine(String file, String text) {
+    public String addLine(String file, String text) throws Exception {
         try {
             // File Writer in append mode
             BufferedWriter writer = new BufferedWriter(new FileWriter(basePath+file, true));
@@ -58,13 +59,13 @@ public class FileHandler {
             writer.close();
             return "Text " + text + " written in " + basePath+file;
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String replaceLine(String file, String text, int line) {
+    public String replaceLine(String file, String text, int line) throws Exception {
         Integer lines = 0;
         String sLine = null;
         try {
@@ -82,7 +83,8 @@ public class FileHandler {
             }
             br.close();
             if(line > lines) {
-                return "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+                String error = "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+                throw new Exception(error);
             }
             // Write the new String with the replaced line OVER the same file
             BufferedWriter writer = new BufferedWriter(new FileWriter(basePath+file));
@@ -90,13 +92,13 @@ public class FileHandler {
             writer.close();
             return "Text " + text + " modified in " + basePath+file + " line: " + line;
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String getText(String file) {
+    public String getText(String file) throws Exception {
         String sLine = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(basePath+file));
@@ -108,13 +110,13 @@ public class FileHandler {
             br.close();
             return inputBuffer.toString();
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String insertLine(String file, String text, int line) {
+    public String insertLine(String file, String text, int line) throws Exception {
         Integer lines = 0;
         String sLine = null;
         try {
@@ -146,13 +148,13 @@ public class FileHandler {
             writer.close();
             return "Text " + text + " inserted in " + basePath+file + " line: " + line;
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String deleteLine(String file, int line) {
+    public String deleteLine(String file, int line) throws Exception {
         Integer lines = 0;
         String sLine = null;
         try {
@@ -167,7 +169,8 @@ public class FileHandler {
             }
             br.close();
             if(line > lines) {
-                return "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+                String error = "ERROR: Selected file " + basePath+file + " has not enough lines. Selected line: " + Integer.toString(line) + " and file has " + Integer.toString(lines) + " lines";
+                throw new Exception(error);
             }
             // Write the new String with the replaced line OVER the same file
             BufferedWriter writer = new BufferedWriter(new FileWriter(basePath+file));
@@ -175,26 +178,26 @@ public class FileHandler {
             writer.close();
             return "Line " + line + " deleted from " + basePath+file ;
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String createFile(String file) {
+    public String createFile(String file) throws Exception {
         String sLine = null;
         try {
             PrintWriter writer = new PrintWriter(basePath+file, "UTF-8");
             writer.close();
             return "File created in path: " + basePath+file;
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 
-    public String searchSubStr(String file, String text) {
+    public String searchSubStr(String file, String text) throws Exception {
         String sLine = null;
         try {
             BufferedReader br = new BufferedReader(new FileReader(basePath+file));
@@ -208,9 +211,9 @@ public class FileHandler {
             br.close();
             return inputBuffer.toString();
         } catch (FileNotFoundException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         } catch (IOException e) {
-            return e.toString();
+            throw new Exception(e.toString());
         }
     } 
 }
