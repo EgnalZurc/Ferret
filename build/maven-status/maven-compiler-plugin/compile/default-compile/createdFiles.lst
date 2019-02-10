@@ -1,0 +1,5 @@
+com\ferret\App.class
+com\ferret\FileHandler.class
+com\ferret\ActionController.class
+com\ferret\Action.class
+com\ferret\Config.class
