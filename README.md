@@ -27,10 +27,10 @@ Si se introduce en siguiente argumento, se levanta en el puerto seleccionado:
 # Lista de comandos posibles
 La api funciona mediante peticiones POST, las cuales deben tener en el cuerpo del mensaje la variable request igual a un JSON.
 Ese JSON debe contener lossiguientes campos:
-[OBLIGATORIO] actionID: campo numérico que determina qué petición se está realizando.
-[OBLIGATORIO] filename: campo String que determina sobre qué fichero se está realizando la petición.
-[OPCIONAL] line: campo numérico que determina sobre qué línea se está realizando la petición.
-[OPCIONAL] text: campo String que qué texto se quiere añadir a la petición.
++ [OBLIGATORIO] actionID: campo numérico que determina qué petición se está realizando.
++ [OBLIGATORIO] filename: campo String que determina sobre qué fichero se está realizando la petición.
++ [OPCIONAL] line: campo numérico que determina sobre qué línea se está realizando la petición.
++ [OPCIONAL] text: campo String que qué texto se quiere añadir a la petición.
 ## Contar líneas:
 ```javascript
 curl -X POST http://127.0.0.1:9000/ferret -d request={\"actionID\":0,\"fileName\":\"test.txt\"}
@@ -70,11 +70,11 @@ curl -X POST http://127.0.0.1:9000/ferret -d request={\"actionID\":8,\"fileName\
 
 # Lista de respuestas posibles
 La API responde con un mensaje JSON, el cual contiene la siguiente información.
-payload: String informativo en caso de que la petición haya resultado exitosa.
-succes: bool que indica si la petición ha sido exitosa.
-msg: String informativo en caso de que la petición haya resultado erronea.
-code: número informativo en caso de que la petición haya resultado erronea (no se rellena).
-timestamp: timestamp que indica la hora en la que se produce la respuesta de la petición.
++ payload: String informativo en caso de que la petición haya resultado exitosa.
++ succes: bool que indica si la petición ha sido exitosa.
++ msg: String informativo en caso de que la petición haya resultado erronea.
++ code: número informativo en caso de que la petición haya resultado erronea (no se rellena).
++ timestamp: timestamp que indica la hora en la que se produce la respuesta de la petición.
 ## Petición OK
 ```javascript
 {"payload":"prueba","success":true,"msg":null,"code":0,"timestamp":1549810560}
