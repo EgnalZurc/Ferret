@@ -75,7 +75,7 @@ public class Action {
                     throw new Exception("Incorrect word to be found");
                 }
             default:
-            throw new Exception("Incorrect acion selected");
+            throw new Exception("Incorrect action selected");
         }
     }
 }
