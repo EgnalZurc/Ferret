@@ -1,5 +1,5 @@
 # Ferret
-Ferret es una API de edición de texto.
+Ferret es una API de edición de texto. Pretende simular el comportamiento de un pequeño hurón que se mete dentro de los túneles creados por las consultas de los usuarios hasta llegar a los ficheros objetivo y así editarlos de la manera correspondiente.
 
 # Como ejecutar
 ```javascript
@@ -83,3 +83,20 @@ timestamp: timestamp que indica la hora en la que se produce la respuesta de la 
 ```javascript
 {"payload":null,"success":false,"msg":"java.lang.Exception: Incorrect action selected","code":0,"timestamp":1549811248}
 ```
+
+# Configuración de la API
+Existe un fichero de configuración con nombre estático (ferret.conf) el cual se encuentra en el directorio raíz del proyexto y cuenta con los siguientes argumentos:
+## basePath
+Path donde se esperan que estén los ficheros que van a ser modificados por las consultas.
+Ejemplo Windows:
+```javascript
+basePath=src\\main\\resources\\
+```
+Ejemplo Linux:
+```javascript
+basePath=src/main/resources/
+```
+Es obligatorio que el path acabe con / ó \\
+
+# Gestión de ficheros
+Los ficheros que pueden ser modificados por las consultas lanzadas a la API se encontrarán en el path configurado en el archivo ferret.cnf.
